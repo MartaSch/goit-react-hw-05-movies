@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsMovies } from 'services/api';
 export const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const { movieId } = useParams();
-  const [loading, setLoading] = useState(false);
+  const [movieReviews, setMovieReviews] = useState([]);
+  const { id } = useParams();
+  const [, setLoading] = useState(false);
   const [, setError] = useState(null);
 
   useEffect(() => {
     const getMoviesReviews = async () => {
       setLoading(true);
       try {
-        const reviews = await fetchReviewsMovies(movieId);
-        setReviews(reviews);
+        const { results } = await fetchReviewsMovies(id);
+        setMovieReviews(results);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -20,23 +20,24 @@ export const Reviews = () => {
       }
     };
     getMoviesReviews();
-  }, [movieId]);
+  }, [id]);
 
   return (
     <>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {reviews.length > 0 &&
-            reviews.map(({ id, author, content }) => (
-              <div key={id}>
+      <ul>
+        {movieReviews && movieReviews.length ? (
+          movieReviews?.map(({ id, author, content }) => {
+            return (
+              <li key={id}>
                 <p>Author: {author}</p>
-                <p>"{content}"</p>
-              </div>
-            ))}
-        </div>
-      )}
+                <p>{content}</p>
+              </li>
+            );
+          })
+        ) : (
+          <p>No reviews for this movie</p>
+        )}
+      </ul>
     </>
   );
 };

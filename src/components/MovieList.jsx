@@ -3,13 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 
 export const MovieList = ({ moviesList }) => {
   const location = useLocation();
-  const allPath = location.pathname + location.search;
+  const fullPath = location.pathname + location.movies;
   return (
     <>
       <ul>
         {moviesList.map(({ title, id }) => (
           <li key={id}>
-            <Link to={`${id}`} state={{ from: allPath }}>
+            <Link
+              to={{
+                pathname: `/movies/${id}`,
+                state: { fullPath },
+              }}
+            >
               {title}
             </Link>
           </li>

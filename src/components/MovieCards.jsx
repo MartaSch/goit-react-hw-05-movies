@@ -1,45 +1,45 @@
-import { PropTypes } from 'prop-types';
-const IMAGEURL = 'https://image.tmdb.org/t/p/w500/';
+import PropTypes from 'prop-types';
 
-export const MovieCard = ({ movie }) => {
-  const {
-    poster_path,
-    title,
-    release_date,
-    vote_average,
-    overview,
-    genre_ids,
-  } = movie;
-  const releaseDate = release_date;
-  //const movieGenres = genres.map(item => item.name).join(' ');
+export const MovieCard = ({ moviesDetails }) => {
+  const { poster_path, title, release_date, vote_average, overview, genres } =
+    moviesDetails;
+  const releaseDate = new Date(release_date);
+  const releaseYear = releaseDate.getFullYear();
   const userScore = Math.round((Number(vote_average) * 100) / 10);
+
   return (
     <div>
-      <img src={`${IMAGEURL}${poster_path}`} alt="{title}" />
+      <img
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : 'no poster'
+        }
+        alt="{title}"
+      />
       <h3>
-        {title} {releaseDate}
+        {title} {releaseYear}
       </h3>
       <p>User score: {userScore}%</p>
       <h5>
         Overview:
         <p>{overview}</p>
       </h5>
-      <h5>
-        Genres:
-        <p>{genre_ids}</p>
-      </h5>
+      <h5>Genres:</h5>
+      <ul>
+        <li>{genres?.map(({ name }) => name).join(' ')}</li>
+      </ul>
     </div>
   );
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
+  movieDetails: PropTypes.shape({
+    poster_path: PropTypes.string,
     title: PropTypes.string,
-    name: PropTypes.string,
-    release_date: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired,
-    genres: PropTypes.array.isRequired,
+    release_date: PropTypes.number,
+    userScore: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
   }),
 };

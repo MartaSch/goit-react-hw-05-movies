@@ -8,6 +8,7 @@ const PARAM = {
   details: '/movie',
   credits: '/credits',
   reviews: '/reviews',
+  genre: '/genre/movie/list',
 };
 
 const fetchTrendingMovies = async () => {
@@ -22,23 +23,21 @@ const fetchSerchingMovies = async query => {
   return data.results;
 };
 
-const fetchDetailsMovies = async movieId => {
+const fetchDetailsMovies = async id => {
+  const { data } = await axios.get(`${PARAM.details}/${id}?api_key=${API_KEY}`);
+  return data;
+};
+
+const fetchCreditsMovies = async id => {
   const { data } = await axios.get(
-    `${PARAM.details}/${movieId}?api_key=${API_KEY}`
+    `${PARAM.details}/${id}${PARAM.credits}?api_key=${API_KEY}`
   );
   return data;
 };
 
-const fetchCreditsMovies = async movieId => {
+const fetchReviewsMovies = async id => {
   const { data } = await axios.get(
-    `${PARAM.details}/${movieId}/${PARAM.credits}?api_key=${API_KEY}`
-  );
-  return data;
-};
-
-const fetchReviewsMovies = async movieId => {
-  const { data } = await axios.get(
-    `${PARAM.details}/${movieId}/${PARAM.reviews}?api_key=${API_KEY}`
+    `${PARAM.details}/${id}${PARAM.reviews}?api_key=${API_KEY}`
   );
   return data;
 };

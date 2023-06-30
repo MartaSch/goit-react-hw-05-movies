@@ -1,33 +1,42 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { fetchDetailsMovies } from 'services/api';
 import { MovieCard } from './MovieCards';
-
 export const MoviesDetails = () => {
-  const [movies, setMovies] = useState([]);
-  const { movieId } = useParams();
+  const [moviesDetails, setMoviesDetails] = useState([]);
+  const { id } = useParams();
   const [, setError] = useState(null);
   const location = useLocation();
   useEffect(() => {
     const getMoviesDetails = async () => {
       try {
-        const movies = await fetchDetailsMovies(movieId);
-        setMovies(movies);
+        const moviesDetails = await fetchDetailsMovies(id);
+        setMoviesDetails(moviesDetails);
       } catch (error) {
         setError(error.message);
       }
     };
     getMoviesDetails();
-  }, [movieId]);
+  }, [id]);
   return (
     <div>
-      <MovieCard movie={movies} />
-      <Link to="Reviews" state={location.state}>
-        Reviews
-      </Link>
-      <Link to="Cast" state={location.state}>
-        Cast
-      </Link>
+      <MovieCard moviesDetails={moviesDetails} />
+      <ul>
+        <li>
+          <NavLink state={location.state} to="reviews">
+            Reviews
+          </NavLink>
+        </li>
+        <li>
+          <NavLink state={location.state} to="cast">
+            Cast
+          </NavLink>
+        </li>
+      </ul>
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

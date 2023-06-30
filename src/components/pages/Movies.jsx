@@ -3,7 +3,7 @@ import { MovieList } from 'components/MovieList';
 import { useState, useEffect } from 'react';
 import { fetchSerchingMovies } from 'services/api';
 
-export const MoviesSearch = () => {
+export const Movies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [, setError] = useState(null);
