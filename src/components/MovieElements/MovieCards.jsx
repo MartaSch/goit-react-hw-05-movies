@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import css from './MovieCards.module.css';
 export const MovieCard = ({ moviesDetails }) => {
   const { poster_path, title, release_date, vote_average, overview, genres } =
     moviesDetails;
@@ -8,8 +8,9 @@ export const MovieCard = ({ moviesDetails }) => {
   const userScore = Math.round((Number(vote_average) * 100) / 10);
 
   return (
-    <div>
+    <section className={css.MovieCardContainer}>
       <img
+        className={css.Poster}
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -17,19 +18,21 @@ export const MovieCard = ({ moviesDetails }) => {
         }
         alt="{title}"
       />
-      <h3>
-        {title} {releaseYear}
-      </h3>
-      <p>User score: {userScore}%</p>
-      <h5>
-        Overview:
-        <p>{overview}</p>
-      </h5>
-      <h5>Genres:</h5>
-      <ul>
-        <li>{genres?.map(({ name }) => name).join(' ')}</li>
-      </ul>
-    </div>
+      <div className={css.MovieInformation}>
+        <h3 className={css.MovieYearTitle}>
+          {title} ({releaseYear})
+        </h3>
+        <p className={css.UserScore}>User score: {userScore}%</p>
+        <h5 className={css.Title}>Overview:</h5>
+        <p className={css.Text}>{overview}</p>
+        <h5 className={css.Title}>Genres:</h5>
+        <ul className={css.List}>
+          <li className={css.Text}>
+            {genres?.map(({ name }) => name).join(', ')}
+          </li>
+        </ul>
+      </div>
+    </section>
   );
 };
 
@@ -38,6 +41,7 @@ MovieCard.propTypes = {
     poster_path: PropTypes.string,
     title: PropTypes.string,
     release_date: PropTypes.number,
+    vote_average: PropTypes.number.isRequired,
     userScore: PropTypes.number,
     overview: PropTypes.string,
     genres: PropTypes.array,

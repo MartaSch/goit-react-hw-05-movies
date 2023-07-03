@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCreditsMovies } from 'services/api';
 import { CastCard } from './CastCard';
+import css from './Cast.module.css';
 export const Cast = () => {
   const [casts, setCast] = useState([]);
   const { id } = useParams();
@@ -21,10 +22,10 @@ export const Cast = () => {
 
   return (
     <>
-      <ul>
+      <ul className={css.CastList}>
         {casts.map(item => {
           return (
-            <li key={item.id}>
+            <li className={css.CastListItem} key={item.id}>
               <CastCard cast={item} />
             </li>
           );

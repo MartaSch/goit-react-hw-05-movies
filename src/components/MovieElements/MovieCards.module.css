@@ -1,0 +1,34 @@
+.MovieCardContainer {
+    display: flex;
+}
+
+.Poster {
+    width: 300px;
+    height: 400px;
+}
+
+.MovieYearTitle {
+    font-size: 30px;
+}
+
+.MovieInformation {
+margin-left: 30px;
+}
+
+.UserScore {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.Title {
+    font-size: 17px;
+}
+
+.Text {
+    font-weight: 500;
+}
+
+.List {
+    list-style: none;
+    padding-left: 0px;
+}

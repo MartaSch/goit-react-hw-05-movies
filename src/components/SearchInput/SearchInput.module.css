@@ -1,0 +1,18 @@
+.SearchInputContainer {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.SearchButton {
+    margin-right: 15px;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    border-color: bisque;
+    font-size: 15px;
+}
+
+.SearchInput {
+    width: 200px;
+    height: 25px;
+}

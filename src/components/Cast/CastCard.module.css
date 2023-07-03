@@ -1,0 +1,13 @@
+.ProfileImage {
+    width: 250px;
+    height: 350px;
+}
+
+.ActorName {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.CharacterName {
+    font-size: 17px;
+}

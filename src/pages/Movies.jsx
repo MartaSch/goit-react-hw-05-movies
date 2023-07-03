@@ -1,5 +1,5 @@
-import { SearchInput } from 'components/SearchInput';
-import { MovieList } from 'components/MovieList';
+import { SearchInput } from 'components/SearchInput/SearchInput';
+import { MovieList } from 'components/MovieElements/MovieList';
 import { useState, useEffect } from 'react';
 import { fetchSerchingMovies } from 'services/api';
 

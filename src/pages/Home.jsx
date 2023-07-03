@@ -1,4 +1,4 @@
-import { MovieList } from 'components/MovieList';
+import { MovieList } from 'components/MovieElements/MovieList';
 import { useEffect, useState } from 'react';
 import { fetchTrendingMovies } from 'services/api';
 

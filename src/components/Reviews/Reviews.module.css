@@ -1,0 +1,14 @@
+.ReviewsList{
+list-style: none;
+padding-left: 0px;
+}
+
+.AuthorName {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.Contect {
+    font-size: 17px;
+    font-weight: 500;
+}

@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsMovies } from 'services/api';
+import { PropTypes } from 'prop-types';
+import css from './Reviews.module.css';
+
 export const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState([]);
   const { id } = useParams();
@@ -24,13 +27,13 @@ export const Reviews = () => {
 
   return (
     <>
-      <ul>
+      <ul className={css.ReviewsList}>
         {movieReviews && movieReviews.length ? (
           movieReviews?.map(({ id, author, content }) => {
             return (
               <li key={id}>
-                <p>Author: {author}</p>
-                <p>{content}</p>
+                <p className={css.AuthorName}>Author: {author}</p>
+                <p className={css.Contect}>{content}</p>
               </li>
             );
           })
@@ -40,4 +43,12 @@ export const Reviews = () => {
       </ul>
     </>
   );
+};
+
+Reviews.propTypes = {
+  movieReviews: PropTypes.arrayOf({
+    id: PropTypes.number.isRequired,
+    author: PropTypes.string,
+    content: PropTypes.string,
+  }),
 };

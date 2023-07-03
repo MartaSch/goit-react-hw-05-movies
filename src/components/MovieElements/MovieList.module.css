@@ -1,0 +1,13 @@
+.MovieList {
+    margin-left: 30px;
+    list-style: none;
+}
+
+.MovieListItem {
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+}

@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
+import css from './SearchInput.module.css';
 export const SearchInput = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState('');
 
@@ -17,12 +17,13 @@ export const SearchInput = ({ onSubmit }) => {
   };
 
   return (
-    <div>
+    <div className={css.SearchInputContainer}>
       <form onSubmit={handleSubmit}>
-        <button type="submit">
+        <button className={css.SearchButton} type="submit">
           <span>Search</span>
         </button>
         <input
+          className={css.SearchInput}
           id={nanoid()}
           type="text"
           autoFocus
