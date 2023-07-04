@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate, Outlet, NavLink, useLocation } from 'react-router-dom';
 import { fetchDetailsMovies } from 'services/api';
 import { MovieCard } from '../components/MovieElements/MovieCards';
 import css from './MoviesDetails.module.css';
@@ -9,7 +9,8 @@ export const MoviesDetails = () => {
   const { id } = useParams();
   const [, setError] = useState(null);
   const location = useLocation();
-  const back = useRef(location.state?.from ?? '/');
+  const navigate = useNavigate();
+  // const back = useRef(location.state?.from ?? '/');
   useEffect(() => {
     const getMoviesDetails = async () => {
       try {
@@ -22,12 +23,18 @@ export const MoviesDetails = () => {
     getMoviesDetails();
   }, [id]);
 
+  const handleBackButton = () => {
+    navigate(-1);
+  };
+
   return (
     <div className={css.MoviesDetailsContainer}>
-      <button className={css.ButtonBack} type="button">
-        <Link className={css.TextButton} to={back.current}>
-          Go back
-        </Link>
+      <button
+        className={css.ButtonBack}
+        type="button"
+        onClick={handleBackButton}
+      >
+        Go back
       </button>
       <MovieCard moviesDetails={moviesDetails} />
       <ul className={css.LinkList}>
