@@ -2,9 +2,9 @@ import { Suspense, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate, Outlet, NavLink, useLocation } from 'react-router-dom';
 import { fetchDetailsMovies } from 'services/api';
-import { MovieCard } from '../components/MovieElements/MovieCards';
+import { MovieCard } from '../../components/MovieElements/MovieCards';
 import css from './MoviesDetails.module.css';
-export const MoviesDetails = () => {
+const MoviesDetails = () => {
   const [moviesDetails, setMoviesDetails] = useState([]);
   const { id } = useParams();
   const [, setError] = useState(null);
@@ -63,3 +63,5 @@ export const MoviesDetails = () => {
     </div>
   );
 };
+
+export default MoviesDetails;

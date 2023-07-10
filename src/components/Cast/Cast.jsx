@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchCreditsMovies } from 'services/api';
 import { CastCard } from './CastCard';
 import css from './Cast.module.css';
-export const Cast = () => {
+const Cast = () => {
   const [casts, setCast] = useState([]);
   const { id } = useParams();
   const [, setError] = useState(null);
@@ -34,3 +34,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

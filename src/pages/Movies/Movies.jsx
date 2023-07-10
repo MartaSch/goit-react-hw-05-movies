@@ -3,7 +3,7 @@ import { MovieList } from 'components/MovieElements/MovieList';
 import { useState, useEffect } from 'react';
 import { fetchSerchingMovies } from 'services/api';
 
-export const Movies = () => {
+const Movies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [, setError] = useState(null);
@@ -36,3 +36,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

@@ -4,7 +4,7 @@ import { fetchReviewsMovies } from 'services/api';
 import { PropTypes } from 'prop-types';
 import css from './Reviews.module.css';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState([]);
   const { id } = useParams();
   const [, setLoading] = useState(false);
@@ -52,3 +52,4 @@ Reviews.propTypes = {
     content: PropTypes.string,
   }),
 };
+export default Reviews;
